@@ -1,88 +1,83 @@
-/* Board grid declaration*/
 .board_boundaries {
-    width: 500px;
     height: 500px;
+    width: 500px;
 }
+
 .board {
     display: grid;
-    grid-template-columns: 4fr 1fr 3fr 1fr 4fr;
-    grid-template-rows: 4fr 1fr 3fr 1fr 4fr;
-    
-}
-.vertical {
-    display: grid;
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(13, 1fr);
+    grid-template-rows: repeat(13, 1fr);
+    height: 100%;
+    width: 100%;
 }
 
-.horizontal {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+.center {
+    grid-area: 5 / 6 / 10 / 9;
+    background-color: blanchedalmond;
 }
 
-.upper_mid {
-    display: grid;
-    grid-template-rows: 1fr 3fr;
+.center_left {
+    grid-area: 6 / 5 / 9;
+    background-color: blanchedalmond;
 }
 
-.lower_mid {
-    display: grid;
-    grid-template-rows: 3fr 1fr;
+.center_right {
+    grid-area: 6 / 9 / 9;
+    background-color: blanchedalmond;
+}
+.fill{
+    background-color: blanchedalmond;
 }
 
-.mid_left {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
+.red_home {
+    grid-area: 1 / 1 / 5 / 5;
+    background-color: red;
+    border-top: 1px black solid;
+    border-left: 1px black solid;
 }
 
-.mid_right {
-    display: grid;
-    grid-template-columns: 3fr 1fr;
+.green_home {
+    grid-area: 1 / 10 / 5 / 14;
+    background-color: green;
+    border-top: 1px black solid;
+    border-right: 1px black solid;
 }
 
-.vert_whitespace {
-    display: grid;
-    grid-template-rows: repeat(3, 1fr);
+.yellow_home {
+    grid-area: 10 / 1 / 14 / 5;
+    background-color: yellow;
+    border-bottom: 1px black solid;
+    border-left: 1px black solid;
 }
 
-.hor_whitespace {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+.blue_home {
+    grid-area: 10 / 10 / 14 / 14;
+    background-color: blue;
+    border-bottom: 1px black solid;
+    border-right: 1px black solid;
 }
-/*Tile styling */
+
+.red_tile {
+    background-color: red;
+    border: 1px black solid;
+}
+
+.green_tile {
+    background-color: green;
+    border: 1px black solid;
+}
+
+.blue_tile {
+    background-color: blue;
+    border: 1px black solid;
+}
+
+.yellow_tile {
+    background-color: yellow;
+    border: 1px black solid;
+}
+
 .pavement {
-    background-color: whitesmoke;
+    background-color: blanchedalmond;
     border: 1px black solid;
-}
-.red_start{
-    background-color: red;
-    border: 1px black solid;
-}
-.blue_start{
-    background-color: blue;
-    border: 1px black solid;
-}
-.green_start{
-    background-color: green;
-    border: 1px black solid;
-}
-.yellow_start{
-    background-color: yellow;
-    border: 1px black solid;
-}
-.red_home{
-    background-color: red;
-}
-.green_home{
-    background-color: green;
-}
-.blue_home{
-    background-color: blue;
-}
-.yellow_home{
-    background-color: yellow;
-}
-.center{
-    background-color: turquoise;
-    font-size: x-large;
-    text-align: center;
 }
