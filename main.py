@@ -1,27 +1,19 @@
 #48 tiles around the board
 #4 tiles for each colors' goal
 
+from square import square
+
+
 pavement = {
     1: grid-row: 5;
 }
-for i in range(1,49):
-    pavement[i] = [f'pos {i}']
 
-red_goal = {}
-for i in range(1,5):
-    red_goal[i] = [f'goal {i}']
+for row in range(1,14):
+    for col in range(1,14):
+        if row == 1:
+            if col <= 4 and col >=9:
+                new square (column = col, row = row)
 
-green_goal = {}
-for i in range(1, 5):
-    green_goal[i] = [f'goal {i}']
-
-yellow_goal = {}
-for i in range(1, 5):
-    yellow_goal[i] = [f'goal {i}']
-
-blue_goal = {}
-for i in range(1, 5):
-    blue_goal[i] = [f'goal {i}']
 
 print(f'pavement: {pavement}')
 print(f'red goal: {red_goal}')
