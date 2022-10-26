@@ -9,23 +9,6 @@
     grid-template-rows: repeat(13, 1fr);
     height: 100%;
     width: 100%;
-}
-
-.center {
-    grid-area: 5 / 6 / 10 / 9;
-    background-color: blanchedalmond;
-}
-
-.center_left {
-    grid-area: 6 / 5 / 9;
-    background-color: blanchedalmond;
-}
-
-.center_right {
-    grid-area: 6 / 9 / 9;
-    background-color: blanchedalmond;
-}
-.fill{
     background-color: blanchedalmond;
 }
 
