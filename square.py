@@ -1,6 +1,9 @@
-class square:
-    entrance: square
-    exits: square
-    column = "template-column:" 
+class Square:
+    entrance: Square
+    exits: Square
+    column = 0
+    row = 0
 
-    def square(column, row):
+    def __init__(self, column, row):
+        self.column = column
+        self.row = row
