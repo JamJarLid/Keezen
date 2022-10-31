@@ -13,6 +13,8 @@ def create_square(index, html_element):
     pavement.append(Square(html_element, pavement))
 
 j('.tile').each(create_square)
+green_pawns = j('.greenPawns').each(create_pawn)
+green_player = Player(owned_pawns = green_pawns)
 
 # Creating players
 # players= [4]
@@ -26,4 +28,4 @@ j('.tile').each(create_square)
 #     else:
 #         players.append(Player(4, 'yellow', html_element))
 
-p1 = Player(1, 'red', )
+p1 = Player(1, 'red', j())

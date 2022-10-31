@@ -12,5 +12,5 @@ class Player:
     def click(self, event):
         self.draw_pawn()
 
-    def draw_pawn(self):
+    def move_pawn(self):
         j(self.html_element).html(f'<div style="color: {self.color}"> X</div>')

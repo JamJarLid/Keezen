@@ -27,4 +27,4 @@ class Square:
         j(self.html_element).html(new_inner_html)
 
     # def draw_pawn(self):
-    #     j(self.html_element).html('<div style="color: aqua"> X</div>')
+    #     j(self.html_element).html(f'<div style="color: {self.color}"> X</div>')
