@@ -1,0 +1,66 @@
+.board_boundaries {
+    height: 40px;
+    width: 1000px;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(48, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    height: 100%;
+    width: 100%;
+    background-color: blanchedalmond;
+}
+
+.red_home {
+    grid-area: 1 / 1 / 5 / 5;
+    background-color: red;
+    border-top: 1px black solid;
+    border-left: 1px black solid;
+}
+
+.green_home {
+    grid-area: 1 / 10 / 5 / 14;
+    background-color: green;
+    border-top: 1px black solid;
+    border-right: 1px black solid;
+}
+
+.yellow_home {
+    grid-area: 10 / 1 / 14 / 5;
+    background-color: yellow;
+    border-bottom: 1px black solid;
+    border-left: 1px black solid;
+}
+
+.blue_home {
+    grid-area: 10 / 10 / 14 / 14;
+    background-color: blue;
+    border-bottom: 1px black solid;
+    border-right: 1px black solid;
+}
+
+.red_tile {
+    background-color: red;
+    border: 1px black solid;
+}
+
+.green_tile {
+    background-color: green;
+    border: 1px black solid;
+}
+
+.blue_tile {
+    background-color: blue;
+    border: 1px black solid;
+}
+
+.yellow_tile {
+    background-color: yellow;
+    border: 1px black solid;
+}
+
+.pavement {
+    background-color: blanchedalmond;
+    border: 1px black solid;
+}
