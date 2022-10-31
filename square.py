@@ -3,7 +3,7 @@ j = window.jQuery
 
 
 class Square:
-    #entrance: Square
+    # entrance = self.get_previous()
     # exits:[Square]
 
     def __init__(self, html_element, pavement):
@@ -13,7 +13,7 @@ class Square:
         j(html_element).on('click', self.click)
 
     def click(self, event):
-        self.place_pawn()
+        self.draw_pawn()
 
     def get_previous(self):
         return self.pavement[self.index - 1 if self.index > 0 else -1]
@@ -25,3 +25,6 @@ class Square:
         my_inner_html = j(self.html_element).html()
         new_inner_html = 'X' if my_inner_html == '' else ''
         j(self.html_element).html(new_inner_html)
+
+    # def draw_pawn(self):
+    #     j(self.html_element).html('<div style="color: aqua"> X</div>')

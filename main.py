@@ -2,24 +2,28 @@
 # 4 tiles for each colors' goal
 
 from Square import Square
+from Player import Player
 from browser import window
 j = window.jQuery
 
 
-# Square assigment algoritm
+# Square assigment
 pavement = []
 def create_square(index, html_element):
     pavement.append(Square(html_element, pavement))
 
 j('.tile').each(create_square)
 
+# Creating players
+# players= [4]
+# def create_player(html_element):
+#     if len(players) == 0:
+#         players.append(Player(1, 'red', html_element))
+#     elif len(players) == 1:
+#         players.append(Player(2, 'green', html_element))
+#     elif len(players) == 2:
+#         players.append(Player(3, 'blue', html_element))
+#     else:
+#         players.append(Player(4, 'yellow', html_element))
 
-def find_square(col, row):
-    for s in pavement:
-        if col == s.column:
-            if row == s.row:
-                return s
-    return None
-
-
-print(pavement)
+p1 = Player(1, 'red', )
