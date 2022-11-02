@@ -32,5 +32,6 @@ j('.blue-goal-tile').each(create_goal)
 j('.yellow-goal-tile').each(create_goal)
 
 red_player = Player('red')
-
-print(red_goal)
+green_player = Player('green')
+blue_player = Player('blue')
+yellow_player = Player('yellow')

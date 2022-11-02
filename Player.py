@@ -9,5 +9,6 @@ class Player:
         self.pawns = []
         for i in range (1,5):
             self.pawns.append(Pawn(i, self.color))
-        self.home = f'{self.color}-home'
-        j(f'.{self.home}').html(self.pawns[0])
+        self.home = f'.{self.color}-home'
+        for i in range(0, 4):
+            j(self.home).append(str(self.pawns[i]))

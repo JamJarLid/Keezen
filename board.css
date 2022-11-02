@@ -14,62 +14,79 @@
 
 .red-home {
     grid-area: 1 / 1 / 5 / 5;
-    background-color: red;
+    background-color: darkred;
     border-top: 1px black solid;
     border-left: 1px black solid;
     font-size: xx-large;
+    color: black;
+    text-align: center;
 }
 
 .green-home {
     grid-area: 1 / 10 / 5 / 14;
-    background-color: green;
+    background-color: darkgreen;
     border-top: 1px black solid;
     border-right: 1px black solid;
     font-size: xx-large;
+    color: black;
+    text-align: center;
 }
 
 .yellow-home {
     grid-area: 10 / 1 / 14 / 5;
-    background-color: yellow;
+    background-color: gold;
     border-bottom: 1px black solid;
     border-left: 1px black solid;
     font-size: xx-large;
+    color: black;
+    text-align: center;
 }
 
 .blue-home {
     grid-area: 10 / 10 / 14 / 14;
-    background-color: blue;
+    background-color: darkblue;
     border-bottom: 1px black solid;
     border-right: 1px black solid;
     font-size: xx-large;
+    color: black;
+    text-align: center;
 }
 
 .red_tile {
     background-color: red;
     border: 1px black solid;
     font-size: xx-large;
+    color: black;
+    text-align: center;
 }
 
 .green_tile {
     background-color: green;
     border: 1px black solid;
     font-size: xx-large;
+    color: black;
+    text-align: center;
 }
 
 .blue_tile {
     background-color: blue;
     border: 1px black solid;
     font-size: xx-large;
+    color: black;
+    text-align: center;
 }
 
 .yellow_tile {
     background-color: yellow;
     border: 1px black solid;
     font-size: xx-large;
+    color: black;
+    text-align: center;
 }
 
 .pavement {
     background-color: blanchedalmond;
     border: 1px black solid;
     font-size: xx-large;
+    text-align: center;
 }
