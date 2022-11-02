@@ -1,5 +1,6 @@
 from Square import Square
 from Player import Player
+from Pawn import Pawn
 from browser import window
 j = window.jQuery
 
@@ -35,3 +36,7 @@ red_player = Player('red')
 green_player = Player('green')
 blue_player = Player('blue')
 yellow_player = Player('yellow')
+
+def move_pawn(pawn, value, square):
+    if(player.pawns[0].position == None):
+        pavement[0]
