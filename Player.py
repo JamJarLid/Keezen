@@ -1,16 +1,13 @@
 from browser import window
+from Pawn import Pawn
 j = window.jQuery
 
 class Player:
 
-    def __init__(self ,p_nr, color, html_element):
-        self.p_nr = p_nr
+    def __init__(self , color):
         self.color = color
-        self.html_element = html_element
-        j(html_element).on('click', self.click)
-
-    def click(self, event):
-        self.draw_pawn()
-
-    def move_pawn(self):
-        j(self.html_element).html(f'<div style="color: {self.color}"> X</div>')
+        self.pawns = []
+        for i in range (1,5):
+            self.pawns.append(Pawn(i, self.color))
+        self.home = f'{self.color}-home'
+        j(f'.{self.home}').html(self.pawns[0])

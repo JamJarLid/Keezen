@@ -1,31 +1,36 @@
-# 48 tiles around the board
-# 4 tiles for each colors' goal
-
 from Square import Square
 from Player import Player
 from browser import window
 j = window.jQuery
 
 
-# Square assigment
+# Board initialization
 pavement = []
 def create_square(index, html_element):
     pavement.append(Square(html_element, pavement))
 
 j('.tile').each(create_square)
-green_pawns = j('.greenPawns').each(create_pawn)
-green_player = Player(owned_pawns = green_pawns)
 
-# Creating players
-# players= [4]
-# def create_player(html_element):
-#     if len(players) == 0:
-#         players.append(Player(1, 'red', html_element))
-#     elif len(players) == 1:
-#         players.append(Player(2, 'green', html_element))
-#     elif len(players) == 2:
-#         players.append(Player(3, 'blue', html_element))
-#     else:
-#         players.append(Player(4, 'yellow', html_element))
+red_goal = []
+green_goal = []
+blue_goal = []
+yellow_goal = []
 
-p1 = Player(1, 'red', j())
+def create_goal(index, html_element):
+    css_class = j(html_element).attr('class')
+    list = None
+    if 'red' in css_class: list = red_goal
+    elif 'green' in css_class: list = green_goal
+    elif 'blue' in css_class: list = blue_goal
+    elif 'yellow' in css_class: list = yellow_goal
+
+    list.append(Square(html_element, list))
+
+j('.red-goal-tile').each(create_goal)
+j('.green-goal-tile').each(create_goal)
+j('.blue-goal-tile').each(create_goal)
+j('.yellow-goal-tile').each(create_goal)
+
+red_player = Player('red')
+
+print(red_goal)

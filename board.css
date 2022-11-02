@@ -1,6 +1,6 @@
 .board_boundaries {
-    height: 500px;
-    width: 500px;
+    height: 600px;
+    width: 600px;
 }
 
 .board {
@@ -12,55 +12,64 @@
     background-color: blanchedalmond;
 }
 
-.red_home {
+.red-home {
     grid-area: 1 / 1 / 5 / 5;
     background-color: red;
     border-top: 1px black solid;
     border-left: 1px black solid;
+    font-size: xx-large;
 }
 
-.green_home {
+.green-home {
     grid-area: 1 / 10 / 5 / 14;
     background-color: green;
     border-top: 1px black solid;
     border-right: 1px black solid;
+    font-size: xx-large;
 }
 
-.yellow_home {
+.yellow-home {
     grid-area: 10 / 1 / 14 / 5;
     background-color: yellow;
     border-bottom: 1px black solid;
     border-left: 1px black solid;
+    font-size: xx-large;
 }
 
-.blue_home {
+.blue-home {
     grid-area: 10 / 10 / 14 / 14;
     background-color: blue;
     border-bottom: 1px black solid;
     border-right: 1px black solid;
+    font-size: xx-large;
 }
 
 .red_tile {
     background-color: red;
     border: 1px black solid;
+    font-size: xx-large;
 }
 
 .green_tile {
     background-color: green;
     border: 1px black solid;
+    font-size: xx-large;
 }
 
 .blue_tile {
     background-color: blue;
     border: 1px black solid;
+    font-size: xx-large;
 }
 
 .yellow_tile {
     background-color: yellow;
     border: 1px black solid;
+    font-size: xx-large;
 }
 
 .pavement {
     background-color: blanchedalmond;
     border: 1px black solid;
+    font-size: xx-large;
 }
