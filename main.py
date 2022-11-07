@@ -2,6 +2,7 @@ from Square import Square
 from Player import Player
 from Pawn import Pawn
 from browser import window
+import random
 j = window.jQuery
 
 
@@ -103,8 +104,15 @@ def move_pawn(pawn: Pawn, value):
     goal_square.place_remove_pawn(pawn)
 
 
+def create_value(event):
+    value = int((random.random()*11)+2)
+    print(value)
+    j('.dice-result').html(f'You rolled a {value}!')
+
+
+j('.dice-button').on('click', create_value)
+
 #start_pawn(red_player.pawns[0])
 # print(red_player.pawns[0].square.pavement)
 #move_pawn(red_player.pawns[0], 5)
 #move_pawn(red_player.pawns[0], 4)
-print()
