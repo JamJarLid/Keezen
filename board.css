@@ -13,40 +13,36 @@
 }
 
 .red-home {
-    grid-area: 1 / 1 / 5 / 5;
+    grid-row: 1 / 5;
     background-color: darkred;
     border-top: 1px black solid;
-    border-left: 1px black solid;
     font-size: xx-large;
     color: black;
     text-align: center;
 }
 
 .green-home {
-    grid-area: 1 / 10 / 5 / 14;
+    grid-row: 1 / 5;
     background-color: darkgreen;
     border-top: 1px black solid;
-    border-right: 1px black solid;
     font-size: xx-large;
     color: black;
     text-align: center;
 }
 
 .yellow-home {
-    grid-area: 10 / 1 / 14 / 5;
+    grid-row: 10 / 14;
     background-color: gold;
     border-bottom: 1px black solid;
-    border-left: 1px black solid;
     font-size: xx-large;
     color: black;
     text-align: center;
 }
 
 .blue-home {
-    grid-area: 10 / 10 / 14 / 14;
+    grid-row: 10 / 14;
     background-color: darkblue;
     border-bottom: 1px black solid;
-    border-right: 1px black solid;
     font-size: xx-large;
     color: black;
     text-align: center;
@@ -89,4 +85,15 @@
     border: 1px black solid;
     font-size: xx-large;
     text-align: center;
+}
+
+.dice-button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    font-family: Helvetica;
+    display: inline-block;
+    font-size: 16px;
 }

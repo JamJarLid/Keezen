@@ -17,10 +17,8 @@ class Square:
     def get_next(self):
         return self.pavement[self.index + 1 if self.index < len(self.pavement) else 0]
 
-    def place_pawn(self):
+    def place_remove_pawn(self, pawn):
+        self.pawn = pawn
         my_inner_html = j(self.html_element).html()
         new_inner_html = str(self.pawn) if my_inner_html == '' else ''
         j(self.html_element).html(new_inner_html)
-        self.pawn.square = self
-
-    

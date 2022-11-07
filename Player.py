@@ -4,11 +4,12 @@ j = window.jQuery
 
 class Player:
 
-    def __init__(self , color):
+    def __init__(self , color, home):
         self.color = color
         self.pawns = []
         for i in range (4):
             self.pawns.append(Pawn(i, self.color))
-        self.home = f'.{self.color}-home'
+        self.home = home
         for i in range(4):
-            j(self.home).append(str(self.pawns[i]))
+            self.home[i].place_remove_pawn(self.pawns[i])
+            self.pawns[i].square = self.home[i]
