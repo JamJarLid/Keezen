@@ -22,3 +22,8 @@ class Square:
         my_inner_html = j(self.html_element).html()
         new_inner_html = str(self.pawn) if my_inner_html == '' else ''
         j(self.html_element).html(new_inner_html)
+
+    def get_pawn(self, event):
+        print(self.pawn)
+        return self.pawn
+
