@@ -104,13 +104,20 @@ def move_pawn(pawn: Pawn, value):
     goal_square.place_remove_pawn(pawn)
 
 
+
 def create_value(event):
     value = int((random.random()*11)+2)
-    print(value)
-    j('.dice-result').html(f'You rolled a {value}!')
+    j('.text-box').html(f'You rolled a {value}!')
 
+def move_turn():
+    value = 0
+    pawn = None
+    j('.text-box').html(f'Roll the dice!')
+    j('.dice-button').on('click', value = create_value)
+    j('.text-box').append('Which pawn do you want to move?')
+    j('.tile').on('click', pawn = self.pawn)
+    move_pawn(pawn, value)
 
-j('.dice-button').on('click', create_value)
 
 #start_pawn(red_player.pawns[0])
 # print(red_player.pawns[0].square.pavement)
