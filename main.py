@@ -2,7 +2,7 @@ from Square import Square
 from Player import Player
 from Pawn import Pawn
 from browser import window
-import random
+#import random
 j = window.jQuery
 
 
@@ -13,6 +13,7 @@ pavement = []
 
 def create_square(index, html_element):
     pavement.append(Square(html_element, pavement))
+
 
 
 j('.tile').each(create_square)
@@ -71,11 +72,17 @@ j('.green-home').each(create_home)
 j('.blue-home').each(create_home)
 j('.yellow-home').each(create_home)
 
-# Create Players
-red_player = Player('red', red_home)
-green_player = Player('green', green_home)
-blue_player = Player('blue', blue_home)
-yellow_player = Player('yellow', yellow_home)
+# Add all squares to square_store
+square_store = []
+square_store.append(pavement)
+square_store.append(red_goal)
+square_store.append(red_home)
+square_store.append(green_goal)
+square_store.append(green_home)
+square_store.append(blue_goal)
+square_store.append(blue_home)
+square_store.append(yellow_goal)
+square_store.append(yellow_home)
 
 
 def start_pawn(pawn: Pawn):
@@ -92,34 +99,46 @@ def start_pawn(pawn: Pawn):
     square.place_remove_pawn(pawn)
 
 
-def move_pawn(pawn: Pawn, value):
-    i = 0
-    start_square: Square = pawn.square
-    goal_square: Square = pawn.square
-    while i < value:
-        goal_square = goal_square.get_next()
-        i += 1
-    start_square.place_remove_pawn(pawn)
-    pawn.move(goal_square)
-    goal_square.place_remove_pawn(pawn)
+def move_pawn():
+    #i = 0
+    print('test')
+    # start_square: Square = pawn.square
+    # goal_square: Square = pawn.square
+    # while i < value:
+    #     goal_square = goal_square.get_next()
+    #     i += 1
+    # start_square.place_remove_pawn(pawn)
+    # pawn.move(goal_square)
+    # goal_square.place_remove_pawn(pawn)
+    
 
 
+# Create Players
+players = []
+red_player = Player('red', red_home, move_pawn)
+green_player = Player('green', green_home, move_pawn)
+blue_player = Player('blue', blue_home, move_pawn)
+yellow_player = Player('yellow', yellow_home, move_pawn)
+players.append(red_player)
+players.append(blue_player)
+players.append(green_player)
+players.append(yellow_player)
+for player in players:
+    for pawn in player.pawns:
+        j(f'#{pawn.id}').on('click',  move_pawn)
 def create_value(event):
     value = int((random.random()*11)+2)
     j('.text-box').html(f'You rolled a {value}!')
     return value
 
-def get_square(event, html_element)
-    j(html_element).on('click', )
-
-    
-def move_turn():
-    j('.text-box').html(f'Roll the dice!')
-    value = j('.dice-button').on('click', create_value)
+def find_pawn(event, html_element):
+    for square in square_store:
+        if html_element == square.html_element:
+            return square.pawn
+        else: return None
 
 
+#j('.dice-button').on('click', create_value)
 start_pawn(red_player.pawns[0])
-move_turn()
-# print(red_player.pawns[0].square.pavement)
 #move_pawn(red_player.pawns[0], 5)
 #move_pawn(red_player.pawns[0], 4)

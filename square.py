@@ -10,6 +10,7 @@ class Square:
         self.pavement = pavement
         self.index = len(self.pavement)
         self.pawn:Pawn = None
+        #j(html_element).on('click', self.get_pawn)
 
     def get_previous(self):
         return self.pavement[self.index - 1 if self.index > 0 else -1]
