@@ -1,10 +1,70 @@
-from Square import Square
-from Player import Player
-from Pawn import Pawn
 from browser import window
 #import random
 j = window.jQuery
 
+
+class Square:
+
+    def __init__(self, html_element, pavement):
+        self.html_element = html_element
+        self.pavement = pavement
+        self.index = len(self.pavement)
+        self.pawn: Pawn = None
+        j(html_element).on('click', self.send_pawn)
+
+    def get_previous(self):
+        return self.pavement[self.index - 1 if self.index > 0 else -1]
+
+    def get_next(self):
+        return self.pavement[self.index + 1 if self.index < len(self.pavement) else 0]
+
+    def place_remove_pawn(self, pawn):
+        self.pawn = pawn
+        my_inner_html = j(self.html_element).html()
+        new_inner_html = str(self.pawn) if my_inner_html == '' else ''
+        j(self.html_element).html(new_inner_html)
+
+    def get_pawn(self, event):
+        print(self.pawn)
+
+    def send_pawn(self, event):
+        global target_pawn
+        target_pawn = self.pawn
+        #print(target_pawn)
+
+
+class Player:
+
+    def __init__(self, color, home):
+        self.color = color
+        self.pawns = []
+        for i in range(4):
+            self.pawns.append(Pawn(i, self.color))
+        self.home = home
+        for i in range(4):
+            self.home[i].place_remove_pawn(self.pawns[i])
+            self.pawns[i].square = self.home[i]
+
+
+class Pawn:
+    square = None
+
+    def __init__(self, id, color):
+        self.id = f'{color[0]}{id}'
+        self.color = color
+
+    def move(self, square: Square):
+        if self.square != None:
+            self.square.pawn = None
+        self.square = square
+
+    def _move_pawn(self):
+        self.move_pawn(6)
+        print('I moved')
+
+    def __str__(self):
+        return f"""
+            <div class="pawn" id="{self.id}" style="color: {self.color}"> &#9823; </div>"""
 
 # Board initialization
 # Create pavement
@@ -124,24 +184,20 @@ def move_pawn(pawn: Pawn, value):
 
 
 def create_value(event):
-    value = int((random.random()*11)+2)
+    value = int(2)#(random.random()*11)+
     j('.text-box').html(f'You rolled a {value}!')
     return value
 
+async def move_turn():
+    value = j('.dice-button').on('click', create_value)
+    await Square.send_pawn()
+    pawn = target_pawn
+    move_pawn(pawn, value)
+    print(f'I have moved to {pawn.square}')
 
-def find_pawn(event, html_element):
-    for square in square_store:
-        if html_element == square.html_element:
-            print(square.pawn)
-            return square.pawn
-        else:
-            print(None)
-            return None
+# def game_loop():
+#     while True:
+#         current_player = players[0]
 
-target_pawn = None
-
-#j('.tile').on('click', find_pawn)
-#j('.dice-button').on('click', create_value)
 start_pawn(red_player.pawns[0])
-#move_pawn(red_player.pawns[0], 5)
-#move_pawn(red_player.pawns[0], 4)
+move_turn()
