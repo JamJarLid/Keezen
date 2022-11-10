@@ -5,13 +5,11 @@ j = window.jQuery
 
 class Player:
 
-    def __init__(self, color, home, move_pawn):
+    def __init__(self, color, home):
         self.color = color
         self.pawns = []
         for i in range(4):
-            pawn = Pawn(i, self.color)
-            #j('body').on('click', f'#{pawn.id}', lambda: move_pawn(pawn, 4))
-            self.pawns.append(pawn)
+            self.pawns.append(Pawn(i, self.color))
         self.home = home
         for i in range(4):
             self.home[i].place_remove_pawn(self.pawns[i])

@@ -1,15 +1,14 @@
 from browser import window
-import Square
+from square import Square
 j = window.jQuery
 
 
 class Pawn:
-    square: Square = None
+    square = None
 
     def __init__(self, id, color):
         self.id = f'{color[0]}{id}'
         self.color = color
-        #j('body').on('click', f'#{self.id}', lambda: self.move(6))
 
     def move(self, square: Square):
         if self.square != None:

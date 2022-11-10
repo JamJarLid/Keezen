@@ -1,5 +1,6 @@
 from browser import window
 from Pawn import Pawn
+import main
 j = window.jQuery
 
 
@@ -9,8 +10,8 @@ class Square:
         self.html_element = html_element
         self.pavement = pavement
         self.index = len(self.pavement)
-        self.pawn:Pawn = None
-        #j(html_element).on('click', self.get_pawn)
+        self.pawn: Pawn = None
+        j(html_element).on('click', self.self_pawn)
 
     def get_previous(self):
         return self.pavement[self.index - 1 if self.index > 0 else -1]
@@ -26,5 +27,7 @@ class Square:
 
     def get_pawn(self, event):
         print(self.pawn)
-        return self.pawn
-
+        
+    def send_pawn(self, event):
+        main.target_pawn = self.pawn
+        print(self.pawn)

@@ -1,4 +1,4 @@
-from Square import Square
+from square import Square
 from Player import Player
 from Pawn import Pawn
 from browser import window
@@ -13,7 +13,6 @@ pavement = []
 
 def create_square(index, html_element):
     pavement.append(Square(html_element, pavement))
-
 
 
 j('.tile').each(create_square)
@@ -85,6 +84,18 @@ square_store.append(yellow_goal)
 square_store.append(yellow_home)
 
 
+# Create Players
+players = []
+red_player = Player('red', red_home)
+green_player = Player('green', green_home)
+blue_player = Player('blue', blue_home)
+yellow_player = Player('yellow', yellow_home)
+players.append(red_player)
+players.append(blue_player)
+players.append(green_player)
+players.append(yellow_player)
+
+
 def start_pawn(pawn: Pawn):
     if pawn in red_player.pawns:
         square: Square = pavement[0]
@@ -99,45 +110,37 @@ def start_pawn(pawn: Pawn):
     square.place_remove_pawn(pawn)
 
 
-def move_pawn():
-    #i = 0
+def move_pawn(pawn: Pawn, value):
+    i = 0
     print('test')
-    # start_square: Square = pawn.square
-    # goal_square: Square = pawn.square
-    # while i < value:
-    #     goal_square = goal_square.get_next()
-    #     i += 1
-    # start_square.place_remove_pawn(pawn)
-    # pawn.move(goal_square)
-    # goal_square.place_remove_pawn(pawn)
-    
+    start_square: Square = pawn.square
+    goal_square: Square = pawn.square
+    while i < value:
+        goal_square = goal_square.get_next()
+        i += 1
+    start_square.place_remove_pawn(pawn)
+    pawn.move(goal_square)
+    goal_square.place_remove_pawn(pawn)
 
 
-# Create Players
-players = []
-red_player = Player('red', red_home, move_pawn)
-green_player = Player('green', green_home, move_pawn)
-blue_player = Player('blue', blue_home, move_pawn)
-yellow_player = Player('yellow', yellow_home, move_pawn)
-players.append(red_player)
-players.append(blue_player)
-players.append(green_player)
-players.append(yellow_player)
-for player in players:
-    for pawn in player.pawns:
-        j(f'#{pawn.id}').on('click',  move_pawn)
 def create_value(event):
     value = int((random.random()*11)+2)
     j('.text-box').html(f'You rolled a {value}!')
     return value
 
+
 def find_pawn(event, html_element):
     for square in square_store:
         if html_element == square.html_element:
+            print(square.pawn)
             return square.pawn
-        else: return None
+        else:
+            print(None)
+            return None
 
+target_pawn = None
 
+#j('.tile').on('click', find_pawn)
 #j('.dice-button').on('click', create_value)
 start_pawn(red_player.pawns[0])
 #move_pawn(red_player.pawns[0], 5)
