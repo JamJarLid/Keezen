@@ -1,4 +1,4 @@
-from square import Square
+from Square import Square
 from Player import Player
 from Pawn import Pawn
 from browser import window
