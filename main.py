@@ -193,7 +193,7 @@ def move_pawn(pawn: Pawn):
 
 
 def create_value(event):
-    global value, current_player
+    global value, current_player, pavement
     if value is None:
         value = random.randint(1, 6)
         j('.text-box').html(f'{current_player.color} player, you rolled a {value}!')
