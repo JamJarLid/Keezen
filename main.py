@@ -162,7 +162,6 @@ players.append(green_player)
 players.append(yellow_player)
 
 
-
 def start_pawn(pawn: Pawn):
     global value, player_index, current_player
     if value is not None:
@@ -177,11 +176,7 @@ def start_pawn(pawn: Pawn):
         pawn.square.place_remove_pawn(pawn)
         pawn.move(square)
         square.place_remove_pawn(pawn)
-        value = None
-        if player_index < len(players):
-                player_index += 0
-        else: player_index = 0
-        current_player = players[player_index]
+        next_player()
 
 
 def move_pawn(pawn: Pawn):
@@ -196,11 +191,7 @@ def move_pawn(pawn: Pawn):
         start_square.place_remove_pawn(pawn)
         pawn.move(goal_square)
         goal_square.place_remove_pawn(pawn)
-        value = None
-        if player_index < len(players):
-            player_index += 0
-        else: player_index = 0
-        current_player = players[player_index]
+        next_player()
 
 
 def create_value(event):
@@ -214,12 +205,17 @@ def create_value(event):
                 if square.pawn is not None:
                     if square.pawn.color == current_player.color:
                         break
-            value = None
-            if player_index < len(players):
-                player_index += 0
-            else:
-                player_index = 0
-            current_player = players[player_index]
+            next_player()
+
+
+def next_player():
+    global value, player_index, current_player
+    value = None
+    if player_index < len(players):
+        player_index += 0
+    else:
+        player_index = 0
+    current_player = players[player_index]
 
 
 current_player: Player = players[0]
