@@ -6,18 +6,18 @@ j = window.jQuery
 
 class Square:
 
-    def __init__(self, html_element, pavement):
+    def __init__(self, html_element, square_list):
         self.html_element = html_element
-        self.pavement = pavement
-        self.index = len(self.pavement)
+        self.square_list = square_list
+        self.index = len(self.square_list)
         self.pawn: Pawn = None
         j(html_element).on('click', self.choose_pawn)
 
     def get_previous(self):
-        return self.pavement[self.index - 1 if self.index > 0 else -1]
+        return self.square_list[self.index - 1 if self.index > 0 else -1]
 
     def get_next(self):
-        return self.pavement[self.index + 1 if self.index < len(self.pavement) else 0]
+        return self.square_list[self.index + 1 if self.index < len(self.square_list) else 0]
 
     def place_remove_pawn(self, pawn):
         self.pawn = pawn
@@ -29,19 +29,21 @@ class Square:
         print(self.pawn)
 
     def choose_pawn(self, event):
+        global pavement
         if value is not None:
             if value == 1 or value == 6:
-                if self.pawn in pavement:
+                if self in pavement:
                     move_pawn(self.pawn)
                 else:
                     start_pawn(self.pawn)
-            elif self.pawn in pavement:
+            elif self in pavement:
                 move_pawn(self.pawn)
 
 
 class Player:
 
     def __init__(self, color, home):
+        global players
         self.color = color
         self.pawns = []
         for i in range(4):
@@ -50,6 +52,7 @@ class Player:
         for i in range(4):
             self.home[i].place_remove_pawn(self.pawns[i])
             self.pawns[i].square = self.home[i]
+        players.append(self)
 
 
 class Pawn:
@@ -75,7 +78,6 @@ class Pawn:
 # Board initialization
 # Create pavement
 pavement = []
-
 
 def create_square(index, html_element):
     pavement.append(Square(html_element, pavement))
@@ -156,10 +158,6 @@ red_player = Player('red', red_home)
 green_player = Player('green', green_home)
 blue_player = Player('blue', blue_home)
 yellow_player = Player('yellow', yellow_home)
-players.append(red_player)
-players.append(blue_player)
-players.append(green_player)
-players.append(yellow_player)
 
 
 def start_pawn(pawn: Pawn):
@@ -195,27 +193,27 @@ def move_pawn(pawn: Pawn):
 
 
 def create_value(event):
-    global value, player_index, current_player
+    global value, current_player
     if value is None:
         value = random.randint(1, 6)
-        j('.text-box').html(f'{current_player.color}, you rolled a {value}!')
-        print(value)
-        if value != 1 or value != 6:
+        j('.text-box').html(f'{current_player.color} player, you rolled a {value}!')
+        print(f'Value: {value}')
+        if value != 1 and value != 6:
             for square in pavement:
-                if square.pawn is not None:
-                    if square.pawn.color == current_player.color:
-                        break
+                if square.pawn is not None and square.pawn.color == current_player.color:
+                    break
             next_player()
 
 
 def next_player():
     global value, player_index, current_player
     value = None
-    if player_index < len(players):
-        player_index += 0
+    if player_index < len(players)-1:
+        player_index += 1
     else:
         player_index = 0
     current_player = players[player_index]
+    print(f'Next player #: {player_index}')
 
 
 current_player: Player = players[0]
