@@ -1,5 +1,6 @@
 from browser import window
-#import random
+from network_brython import send, connect, close
+import random
 j = window.jQuery
 
 
@@ -10,7 +11,7 @@ class Square:
         self.pavement = pavement
         self.index = len(self.pavement)
         self.pawn: Pawn = None
-        j(html_element).on('click', self.send_pawn)
+        j(html_element).on('click', self.choose_pawn)
 
     def get_previous(self):
         return self.pavement[self.index - 1 if self.index > 0 else -1]
@@ -27,10 +28,15 @@ class Square:
     def get_pawn(self, event):
         print(self.pawn)
 
-    def send_pawn(self, event):
-        global target_pawn
-        target_pawn = self.pawn
-        #print(target_pawn)
+    def choose_pawn(self, event):
+        if value is not None:
+            if value == 1 or value == 6:
+                if self.pawn in pavement:
+                    move_pawn(self.pawn)
+                else:
+                    start_pawn(self.pawn)
+            elif self.pawn in pavement:
+                move_pawn(self.pawn)
 
 
 class Player:
@@ -156,48 +162,67 @@ players.append(green_player)
 players.append(yellow_player)
 
 
+
 def start_pawn(pawn: Pawn):
-    if pawn in red_player.pawns:
-        square: Square = pavement[0]
-    elif pawn in green_player.pawns:
-        square = pavement[12]
-    elif pawn in blue_player.pawns:
-        square = pavement[24]
-    elif pawn in yellow_player.pawns:
-        square = pavement[36]
-    pawn.square.place_remove_pawn(pawn)
-    pawn.move(square)
-    square.place_remove_pawn(pawn)
+    global value, player_index, current_player
+    if value is not None:
+        if pawn in red_player.pawns:
+            square: Square = pavement[0]
+        elif pawn in green_player.pawns:
+            square = pavement[12]
+        elif pawn in blue_player.pawns:
+            square = pavement[24]
+        elif pawn in yellow_player.pawns:
+            square = pavement[36]
+        pawn.square.place_remove_pawn(pawn)
+        pawn.move(square)
+        square.place_remove_pawn(pawn)
+        value = None
+        if player_index < len(players):
+                player_index += 0
+        else: player_index = 0
+        current_player = players[player_index]
 
 
-def move_pawn(pawn: Pawn, value):
-    i = 0
-    print('test')
-    start_square: Square = pawn.square
-    goal_square: Square = pawn.square
-    while i < value:
-        goal_square = goal_square.get_next()
-        i += 1
-    start_square.place_remove_pawn(pawn)
-    pawn.move(goal_square)
-    goal_square.place_remove_pawn(pawn)
+def move_pawn(pawn: Pawn):
+    global value, player_index, current_player
+    if value is not None and pawn.square is not None:
+        step = 0
+        start_square: Square = pawn.square
+        goal_square: Square = pawn.square
+        while step < value:
+            goal_square = goal_square.get_next()
+            step += 1
+        start_square.place_remove_pawn(pawn)
+        pawn.move(goal_square)
+        goal_square.place_remove_pawn(pawn)
+        value = None
+        if player_index < len(players):
+            player_index += 0
+        else: player_index = 0
+        current_player = players[player_index]
 
 
 def create_value(event):
-    value = int(2)#(random.random()*11)+
-    j('.text-box').html(f'You rolled a {value}!')
-    return value
+    global value, player_index, current_player
+    if value is None:
+        value = random.randint(1, 6)
+        j('.text-box').html(f'{current_player.color}, you rolled a {value}!')
+        print(value)
+        if value != 1 or value != 6:
+            for square in pavement:
+                if square.pawn is not None:
+                    if square.pawn.color == current_player.color:
+                        break
+            value = None
+            if player_index < len(players):
+                player_index += 0
+            else:
+                player_index = 0
+            current_player = players[player_index]
 
-async def move_turn():
-    value = j('.dice-button').on('click', create_value)
-    await Square.send_pawn()
-    pawn = target_pawn
-    move_pawn(pawn, value)
-    print(f'I have moved to {pawn.square}')
 
-# def game_loop():
-#     while True:
-#         current_player = players[0]
-
-start_pawn(red_player.pawns[0])
-move_turn()
+current_player: Player = players[0]
+player_index = 0
+value = None
+j('.dice-button').on('click', create_value)
