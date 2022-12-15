@@ -39,7 +39,7 @@
 
 .yellow-home {
     grid-row: 10 / 14;
-    background-color: gold;
+    background-color: goldenrod;
     border-bottom: 1px black solid;
     font-size: xx-large;
     color: black;
@@ -80,7 +80,7 @@
 }
 
 .yellow_tile {
-    background-color: gold;
+    background-color: goldenrod;
     border: 1px black solid;
     font-size: xx-large;
     color: black;
