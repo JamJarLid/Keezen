@@ -46,9 +46,9 @@ class Player:
         self.color = color
         self.name = name
         self.pawns = []
-        for i in range(4):
-            self.pawns.append(Pawn(i, self.color))
         self.home = home
+        for i in range(4):
+            self.pawns.append(Pawn(i, self.color, self.home))
         for i in range(4):
             self.home[i].place_remove_pawn(self.pawns[i])
             self.pawns[i].square = self.home[i]
@@ -58,9 +58,10 @@ class Player:
 class Pawn:
     square = None
 
-    def __init__(self, id, color):
+    def __init__(self, id, color, home):
         self.id = f'{color[0]}{id}'
         self.color = color
+        self.home = home
 
     def move(self, square: Square):
         if self.square != None:
@@ -185,6 +186,14 @@ def move_pawn(pawn: Pawn):
         while step < value:
             goal_square = goal_square.get_next()
             step += 1
+        # To knock a player off:
+        if goal_square.pawn is not None:
+            for home_square in goal_square.pawn.home:
+                if home_square.pawn is None:
+                    goal_square.pawn.move(home_square)
+                    goal_square.place_remove_pawn(goal_square.pawn)
+                    home_square.place_remove_pawn(goal_square.pawn)
+                    break
         start_square.place_remove_pawn(pawn)
         pawn.move(goal_square)
         goal_square.place_remove_pawn(pawn)
