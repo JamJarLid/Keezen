@@ -13,10 +13,16 @@ class Square:
         j(html_element).on('click', self.choose_pawn)
 
     def get_previous(self):
-        return self.square_list[self.index - 1 if self.index > 0 else -1]
+        if self.index > 0:
+            return self.square_list[self.index -1]
+        else:
+            return self.square_list[-1]
 
     def get_next(self):
-        return self.square_list[self.index + 1 if self.index < len(self.square_list) else 0]
+        if self.index + 1 < len(self.square_list):
+            return self.square_list[self.index +1]
+        else: 
+            return self.square_list[0]
 
     def place_remove_pawn(self, pawn):
         self.pawn = pawn
@@ -143,18 +149,6 @@ j('.green-home').each(create_home)
 j('.blue-home').each(create_home)
 j('.yellow-home').each(create_home)
 
-# Add all squares to square_store
-square_store = []
-square_store.append(pavement)
-square_store.append(red_goal)
-square_store.append(red_home)
-square_store.append(green_goal)
-square_store.append(green_home)
-square_store.append(blue_goal)
-square_store.append(blue_home)
-square_store.append(yellow_goal)
-square_store.append(yellow_home)
-
 
 # Create Players
 players = []
@@ -190,8 +184,8 @@ def move_pawn(pawn: Pawn):
         if goal_square.pawn is not None:
             for home_square in goal_square.pawn.home:
                 if home_square.pawn is None:
-                    goal_square.pawn.move(home_square)
                     goal_square.place_remove_pawn(goal_square.pawn)
+                    goal_square.pawn.move(home_square)
                     home_square.place_remove_pawn(goal_square.pawn)
                     break
         start_square.place_remove_pawn(pawn)
@@ -244,3 +238,4 @@ blue_player = Player('blue', 'blue', blue_home)
 yellow_player = Player('gold', 'yellow', yellow_home)
 current_player: Player = players[0]
 
+print(pavement[47].get_next().index)
