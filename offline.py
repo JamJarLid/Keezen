@@ -172,26 +172,42 @@ def start_pawn(pawn: Pawn):
 
 
 def move_pawn(pawn: Pawn):
-    global value, player_index, current_player, shared
+    global value, player_index, current_player
     if value is not None and pawn.square is not None:
         step = 0
         start_square: Square = pawn.square
         goal_square: Square = pawn.square
+        step_list = []
         while step < value:
             goal_square = goal_square.get_next()
+            step_list.append(goal_square)
             step += 1
-        # To knock a player off:
-        if goal_square.pawn is not None:
-            for home_square in goal_square.pawn.home:
-                if home_square.pawn is None:
-                    goal_square.place_remove_pawn(goal_square.pawn)
-                    goal_square.pawn.move(home_square)
-                    home_square.place_remove_pawn(goal_square.pawn)
-                    break
-        start_square.place_remove_pawn(pawn)
-        pawn.move(goal_square)
-        goal_square.place_remove_pawn(pawn)
-        next_player()
+        # Home tiles blocking the path
+        if pavement[0].pawn.color == 'red':
+            if pavement[0] in step_list:
+                print("Illegal move: choose another pawn")
+        elif pavement[12].pawn.color == 'green':
+            if pavement[12] in step_list:
+                print("Illegal move: choose another pawn")
+        elif pavement[24].pawn.color == 'blue':
+            if pavement[24] in step_list:
+                print("Illegal move: choose another pawn")
+        elif pavement[36].pawn.color == 'yellow':
+            if pavement[36] in step_list:
+                print("Illegal move: choose another pawn")
+        else:
+            # To knock a player off:
+            if goal_square.pawn is not None:
+                for home_square in goal_square.pawn.home:
+                    if home_square.pawn is None:
+                        goal_square.place_remove_pawn(goal_square.pawn)
+                        goal_square.pawn.move(home_square)
+                        home_square.place_remove_pawn(goal_square.pawn)
+                        break
+            start_square.place_remove_pawn(pawn)
+            pawn.move(goal_square)
+            goal_square.place_remove_pawn(pawn)
+            next_player()
 
 
 def create_value(event):
@@ -224,7 +240,6 @@ red_player = None
 green_player = None
 blue_player = None
 yellow_player = None
-
 player_index = 0
 value = None
 j('.dice-button').on('click', create_value)
@@ -237,5 +252,3 @@ green_player = Player('green', 'green', green_home)
 blue_player = Player('blue', 'blue', blue_home)
 yellow_player = Player('gold', 'yellow', yellow_home)
 current_player: Player = players[0]
-
-print(pavement[47].get_next().index)
