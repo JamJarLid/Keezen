@@ -32,8 +32,6 @@ class Square:
         new_inner_html = str(self.pawn) if my_inner_html == '' else ''
         j(self.html_element).html(new_inner_html)
 
-    def get_pawn(self, event):
-        print(self.pawn)
 
     def choose_pawn(self, event):
         global pavement, shared
@@ -49,7 +47,6 @@ class Square:
 
 
 class Player:
-
     def __init__(self, color, name, home):
         global players
         self.color = color
@@ -263,6 +260,9 @@ def next_player():
     print(f'Next player: {current_player.name}')
 
 
+def pass_round(event):
+    next_player()
+
 # Initial values
 red_player = None
 green_player = None
@@ -271,7 +271,7 @@ yellow_player = None
 player_index = 0
 value = None
 j('.dice-button').on('click', create_value)
-j('.pass-button').on('click',next_player)
+j('.pass-button').on('click', pass_round)
 
 
 #Init
