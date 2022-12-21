@@ -21,8 +21,10 @@ class Square:
     def get_next(self):
         if self.index + 1 < len(self.square_list):
             return self.square_list[self.index +1]
-        else: 
+        elif self.square_list == pavement: 
             return self.square_list[0]
+        else:
+            print("Illegal move: too many steps to take")
 
     def place_remove_pawn(self, pawn):
         self.pawn = pawn
@@ -178,23 +180,37 @@ def move_pawn(pawn: Pawn):
         start_square: Square = pawn.square
         goal_square: Square = pawn.square
         step_list = []
+        illegal = "Illegal move: choose another pawn"
         while step < value:
-            goal_square = goal_square.get_next()
-            step_list.append(goal_square)
-            step += 1
+            if goal_square == pavement[47] and pawn.color == 'red':
+                goal_square = red_goal[0]
+                step += 1
+            elif goal_square == pavement[11] and pawn.color == 'green':
+                goal_square = green_goal[0]
+                step += 1
+            elif goal_square == pavement[23] and pawn.color == 'blue':
+                goal_square = blue_goal[0]
+                step += 1
+            elif goal_square == pavement[35] and pawn.color == 'gold':
+                goal_square = yellow_goal[0]
+                step += 1
+            else:
+                goal_square = goal_square.get_next()
+                step_list.append(goal_square)
+                step += 1
         # Home tiles blocking the path
         if pavement[0].pawn.color == 'red':
             if pavement[0] in step_list:
-                print("Illegal move: choose another pawn")
+                print(illegal)
         elif pavement[12].pawn.color == 'green':
             if pavement[12] in step_list:
-                print("Illegal move: choose another pawn")
+                print(illegal)
         elif pavement[24].pawn.color == 'blue':
             if pavement[24] in step_list:
-                print("Illegal move: choose another pawn")
-        elif pavement[36].pawn.color == 'yellow':
+                print(illegal)
+        elif pavement[36].pawn.color == 'gold':
             if pavement[36] in step_list:
-                print("Illegal move: choose another pawn")
+                print(illegal)
         else:
             # To knock a player off:
             if goal_square.pawn is not None:
