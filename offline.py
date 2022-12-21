@@ -37,14 +37,15 @@ class Square:
 
     def choose_pawn(self, event):
         global pavement, shared
-        if value is not None:
-            if value == 1 or value == 6:
-                if self in pavement:
+        if self.pawn.color == current_player.color:
+            if value is not None:
+                if value == 1 or value == 6:
+                    if self in pavement:
+                        move_pawn(self.pawn)
+                    else:
+                        start_pawn(self.pawn)
+                elif self in pavement:
                     move_pawn(self.pawn)
-                else:
-                    start_pawn(self.pawn)
-            elif self in pavement:
-                move_pawn(self.pawn)
 
 
 class Player:
@@ -223,11 +224,12 @@ def move_pawn(pawn: Pawn):
         else:
         # To knock a player off:
             if goal_square.pawn is not None:
+                knocked_pawn: Pawn = goal_square.pawn
                 for home_square in goal_square.pawn.home:
                     if home_square.pawn is None:
-                        goal_square.place_remove_pawn(goal_square.pawn)
+                        goal_square.place_remove_pawn(knocked_pawn)
                         goal_square.pawn.move(home_square)
-                        home_square.place_remove_pawn(goal_square.pawn)
+                        home_square.place_remove_pawn(knocked_pawn)
                         break
             start_square.place_remove_pawn(pawn)
             pawn.move(goal_square)
