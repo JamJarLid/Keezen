@@ -188,7 +188,7 @@ def move_pawn(pawn: Pawn):
         start_square: Square = pawn.square
         goal_square: Square = pawn.square
         step_list = []
-        illegal = "Illegal move: choose another pawn"
+        illegal = "Illegal move: choose another pawn or press pass"
         while step < value:
             # Check for goal position
             if goal_square == pavement[47] and pawn.color == 'red':
@@ -257,7 +257,7 @@ def next_player():
     else:
         player_index = 0
     current_player = players[player_index]
-    print(f'Next player #: {current_player.name}')
+    print(f'Next player: {current_player.name}')
 
 
 # Initial values
@@ -268,6 +268,7 @@ yellow_player = None
 player_index = 0
 value = None
 j('.dice-button').on('click', create_value)
+j('.pass-button').on('click',next_player)
 
 
 #Init
