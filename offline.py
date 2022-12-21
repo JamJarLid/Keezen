@@ -251,14 +251,26 @@ def create_value(event):
 
 def next_player():
     global value, player_index, current_player
-    value = None
-    if player_index < len(players)-1:
-        player_index += 1
+    is_win = win_check()
+    if is_win == True:
+        print(f'{current_player.name} has won!')
     else:
-        player_index = 0
-    current_player = players[player_index]
-    print(f'Next player: {current_player.name}')
+        value = None
+        if player_index < len(players)-1:
+            player_index += 1
+        else:
+            player_index = 0
+        current_player = players[player_index]
+        print(f'Next player: {current_player.name}')
 
+
+def win_check():
+    global current_player
+    for square in current_player.home:
+        if square.pawn is None:
+            return False
+    else: return True
+    
 
 def pass_round(event):
     next_player()
