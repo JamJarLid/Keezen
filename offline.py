@@ -170,11 +170,12 @@ def start_pawn(pawn: Pawn):
             square = pavement[36]
         # To knock a player off:
         if square.pawn is not None:
+            knocked_pawn = square.pawn
             for home_square in square.pawn.home:
                 if home_square.pawn is None:
-                    square.place_remove_pawn(square.pawn)
+                    square.place_remove_pawn(knocked_pawn)
                     square.pawn.move(home_square)
-                    home_square.place_remove_pawn(square.pawn)
+                    home_square.place_remove_pawn(knocked_pawn)
                     break
         pawn.square.place_remove_pawn(pawn)
         pawn.move(square)
