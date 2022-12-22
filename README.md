@@ -1,7 +1,6 @@
 Keezen
 Python Project with network access and GUI
 
-The branch with the best functionality is the single-file-branch.
 Open the index.html file with LiveServer in order to access the app.
 The script running the program is located in the offline.py file.
 
