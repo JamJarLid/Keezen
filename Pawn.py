@@ -1,5 +1,5 @@
 from browser import window
-from square import Square
+from Square import Square
 j = window.jQuery
 
 
